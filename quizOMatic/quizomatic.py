@@ -5,24 +5,26 @@
 # author: Henry E
 # date: 7/11/2020
 
-#imports
+# imports
 
 import requests
 
+
 # Getting Questions category difficulty
 
-def getQuizParams ():
+def getQuizParams(debug):
+    if debug:
+        print("Executing getQuizParams")
     paramsNotValidated = True
     while paramsNotValidated:
-
 
         difficultyNotValidated = True
         while difficultyNotValidated:
             difficulty = input("How Difficult? Easy, Medium, or Hard: ")
             difficulty = difficulty.lower()
             if difficulty in ["easy", "medium", "hard"]:
-                    difficultyNotValidated = False
-                    print("Difficulty: ", difficulty)
+                difficultyNotValidated = False
+                print("Difficulty: ", difficulty)
             else:
                 print("Enter Easy, Medium, or Hard")
 
@@ -58,7 +60,7 @@ def getQuizParams ():
                 category = int(category) + 8
                 if int(category) >= 9 and int(category) <= 32:
                     categoryNotValidated = False
-                    print("Category: ",int(category)-8)
+                    print("Category: ", int(category) - 8)
                 else:
                     print("Select a number from 1 - 24")
             else:
@@ -75,9 +77,9 @@ def getQuizParams ():
                 print("Type a whole number")
         validNotValidated = True
         while validNotValidated:
-            print(difficulty, int(category)-8, num_Qs)
+            print(difficulty, int(category) - 8, num_Qs)
             valid = input("Is this correct? Y/N: ")
-            if valid in ["Y","N","y","n","Yes","No","yes","no"]:
+            if valid in ["Y", "N", "y", "n", "Yes", "No", "yes", "no"]:
                 if valid in ["Y", "y", "Yes", "yes"]:
                     validNotValidated = False
                     paramsNotValidated = False
@@ -87,22 +89,23 @@ def getQuizParams ():
             else:
                 print("Type Yes or No")
 
-    return(difficulty, category, num_Qs)
+    return (difficulty, category, num_Qs)
 
 
+# requesting questions from OpenTDB
 
-#requesting questions from OpenTDB
+def getQuizQuestions(difficulty, category, num_Qs, debug=True):
+    payload = {"amount": num_Qs, "category": category, "difficulty": difficulty}
+    r = requests.get("https://opentdb.com/api.php", params=payload)
+    if debug:
+        print(r.url)
+    if debug:
+        print(r.text)
+    return (r)
 
-def getQuizQuestions (difficulty, category, num_Qs):
-    payload = {"amount" : num_Qs , "category" : category , "difficulty" : difficulty }
-    r = requests.get("https://opentdb.com/api.php" , params = payload)
-    print(r.url)
-    print(r.text)
-    return(r)
 
+# main
 
-#main
-
-difficulty , category , num_Qs = getQuizParams()
-getQuizQuestions(difficulty, category, num_Qs)
-
+debug = True
+difficulty, category, num_Qs = getQuizParams(debug=True)
+getQuizQuestions(difficulty, category, num_Qs, debug=True)
