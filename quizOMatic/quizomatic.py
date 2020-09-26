@@ -29,39 +29,40 @@ def getQuizParams ():
         categoryNotValidated = True
         while categoryNotValidated:
             print("Quiz Categories:")
-            print("9 = General Knowledge \n \
-10 = Entertainment: Books \n \
-11 = Entertainment: Film \n \
-12 = Entertainment: Music \n \
-13 = Entertainment: Musicals & Theatres \n \
-14 = Entertainment: Television \n \
-15 = Entertainment: Video Games \n \
-16 = Entertainment: Board Games \n \
-17 = Science & Nature \n \
-18 = Science: Computers \n \
-19 = Science: Mathematics \n \
-20 = Mythology \n \
-21 = Sports \n \
-22 = Geography \n \
-23 = History \n \
-24 = Politics \n \
-25 = Art \n \
-26 = Celebrities \n \
-27 = Animals \n \
-28 = Vehicles \n \
-29 = Entertainment: Comics \n \
-30 = Science: Gadgets \n \
-31 = Entertainment: Japanese Anime & Manga  \n \
-32 = Entertainment: Cartoon & Animations")
-            category = input("Choose The Category by number. 9 - 32: ")
+            print("1 = General Knowledge \n \
+2 = Entertainment: Books \n \
+3 = Entertainment: Film \n \
+4 = Entertainment: Music \n \
+5 = Entertainment: Musicals & Theatres \n \
+6 = Entertainment: Television \n \
+7 = Entertainment: Video Games \n \
+8 = Entertainment: Board Games \n \
+9 = Science & Nature \n \
+10 = Science: Computers \n \
+11 = Science: Mathematics \n \
+12 = Mythology \n \
+13 = Sports \n \
+14 = Geography \n \
+15 = History \n \
+16 = Politics \n \
+17 = Art \n \
+18 = Celebrities \n \
+19 = Animals \n \
+20 = Vehicles \n \
+21 = Entertainment: Comics \n \
+22 = Science: Gadgets \n \
+23 = Entertainment: Japanese Anime & Manga  \n \
+24 = Entertainment: Cartoon & Animations")
+            category = input("Choose The Category by number. 1 - 24: ")
             if category.isdigit():
+                category = int(category) + 8
                 if int(category) >= 9 and int(category) <= 32:
                     categoryNotValidated = False
-                    print("Category: ",category)
+                    print("Category: ",int(category)-8)
                 else:
-                    print("Select a number from 9 - 32")
+                    print("Select a number from 1 - 24")
             else:
-                print("Select a number from 9 - 32")
+                print("Select a number from 1 - 24")
         num_QsNotValidated = True
         while num_QsNotValidated:
             num_Qs = input("How Many Questions? 10-50: ")
@@ -74,7 +75,7 @@ def getQuizParams ():
                 print("Type a whole number")
         validNotValidated = True
         while validNotValidated:
-            print(difficulty, category, num_Qs)
+            print(difficulty, int(category)-8, num_Qs)
             valid = input("Is this correct? Y/N: ")
             if valid in ["Y","N","y","n","Yes","No","yes","no"]:
                 if valid in ["Y", "y", "Yes", "yes"]:
