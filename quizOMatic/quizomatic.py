@@ -6,7 +6,7 @@
 # date: 7/11/2020
 
 # imports
-
+import random
 import requests
 
 
@@ -94,18 +94,61 @@ def getQuizParams(debug):
 
 # requesting questions from OpenTDB
 
-def getQuizQuestions(difficulty, category, num_Qs, debug=True):
+def getQuizQuestions(difficulty, category, num_Qs, debug):
     payload = {"amount": num_Qs, "category": category, "difficulty": difficulty}
     r = requests.get("https://opentdb.com/api.php", params=payload)
     if debug:
         print(r.url)
     if debug:
         print(r.text)
-    return (r)
+    return (r.json())
 
+def proccesQList(quizQuestions, debug):
+    for metaQuestion in quizQuestions['results']:
+        if debug:
+            print("Category: ", metaQuestion['category'])
+            print("Type: ", metaQuestion['type'])
+            print("Question: ", metaQuestion['question'])
+            print("Correct answer: ", metaQuestion['correct_answer'])
+            print("Incorrect answer: ", metaQuestion['incorrect_answers'])
+        if metaQuestion['type'] == "multiple":
+            qAnswer = promptMultiQ(metaQuestion, debug)
+        else:
+            qAnswer = (metaQuestion, debug)
+        print(qAnswer)
+    return
+
+def promptMultiQ(metaQuestion, debug ):
+    print("Question: ", metaQuestion['question'])
+    if debug:
+        print("Correct answer: ", metaQuestion['correct_answer'])
+        print("Incorrect answer: ", metaQuestion['incorrect_answers'])
+    #allAnswers = metaQuestion['incorrect_answers'].append(metaQuestion['correct_answer'])
+    allAnswers = metaQuestion['incorrect_answers']
+    if debug:
+        print("Type allAnswers-1", type(allAnswers))
+    allAnswers.append(str(metaQuestion['correct_answer']))
+    if debug:
+        print("Type allAnswers-2", type(allAnswers))
+        print(allAnswers)
+    random.shuffle(allAnswers)
+    answerPosition = 0
+    for answer in allAnswers:
+        if answer == metaQuestion['correct_answer']:
+            correctAnswer = answerPosition
+        else:
+            answerPosition = answerPosition + 1
+    print(allAnswers)
+    return(correctAnswer)
+
+def promptBooleanQ(metaQuestion, debug):
+    print("Question: ", metaQuestion['question'])
+    correctAnswer = metaQuestion['correct_answer']
+    return(correctAnswer)
 
 # main
 
-debug = True
-difficulty, category, num_Qs = getQuizParams(debug=True)
-getQuizQuestions(difficulty, category, num_Qs, debug=True)
+debug = False
+difficulty, category, num_Qs = getQuizParams(debug)
+quizQuestions = getQuizQuestions(difficulty, category, num_Qs, debug)
+proccesQList(quizQuestions, debug)
