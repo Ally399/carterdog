@@ -114,7 +114,7 @@ def proccesQList(quizQuestions, debug):
         if metaQuestion['type'] == "multiple":
             qAnswer = promptMultiQ(metaQuestion, debug)
         else:
-            qAnswer = (metaQuestion, debug)
+            qAnswer = promptBooleanQ(metaQuestion, debug)
         print(qAnswer)
     return
 
@@ -144,6 +144,8 @@ def promptMultiQ(metaQuestion, debug ):
 def promptBooleanQ(metaQuestion, debug):
     print("Question: ", metaQuestion['question'])
     correctAnswer = metaQuestion['correct_answer']
+    print("True or False")
+    #print(correctAnswer)
     return(correctAnswer)
 
 # main
