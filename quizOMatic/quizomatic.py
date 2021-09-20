@@ -139,12 +139,14 @@ def promptMultiQ(metaQuestion, debug ):
         else:
             answerPosition = answerPosition + 1
     print(allAnswers)
+    # Then I need to add a function where it asks the user for an answer. 1-4. It then compares that answer to the real answer. 
     return(correctAnswer)
 
 def promptBooleanQ(metaQuestion, debug):
     print("Question: ", metaQuestion['question'])
     correctAnswer = metaQuestion['correct_answer']
     print("True or False")
+    #Then I need to add a function where it asks the for an answer. True or false. It then compares that answer to the real answer.
     #print(correctAnswer)
     return(correctAnswer)
 
