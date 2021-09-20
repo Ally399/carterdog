@@ -115,7 +115,7 @@ def proccesQList(quizQuestions, debug):
             qAnswer = promptMultiQ(metaQuestion, debug)
         else:
             qAnswer = promptBooleanQ(metaQuestion, debug)
-        print(qAnswer)
+        #print(qAnswer)
     return
 
 def promptMultiQ(metaQuestion, debug ):
