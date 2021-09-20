@@ -139,7 +139,7 @@ def promptMultiQ(metaQuestion, debug ):
         else:
             answerPosition = answerPosition + 1
     print(allAnswers)
-    #return(correctAnswer)
+    return(correctAnswer)
 
 def promptBooleanQ(metaQuestion, debug):
     print("Question: ", metaQuestion['question'])
