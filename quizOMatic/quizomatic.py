@@ -145,7 +145,7 @@ def promptBooleanQ(metaQuestion, debug):
     print("Question: ", metaQuestion['question'])
     correctAnswer = metaQuestion['correct_answer']
     print("True or False")
-    #print(correctAnswer)
+    print(correctAnswer)
     return(correctAnswer)
 
 # main
