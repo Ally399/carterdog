@@ -141,7 +141,8 @@ def promptMultiQ(metaQuestion, debug ):
     print(allAnswers)
     # Then I need to add a function where it asks the user for an answer. 1-4. It then compares that answer to the real answer. 
     userAnswer = input("Choose an answer with a number 1-4: ")
-    userAnswer = userAnswer - 1
+    if userAnswer.isdigit():
+        userAnswer = int(userAnswer) - 1
     if userAnswer == correctAnswer:
         print("Correct!")
     else:
