@@ -127,7 +127,7 @@ def promptMultiQ(metaQuestion, debug ):
     allAnswers = metaQuestion['incorrect_answers']
     if debug:
         print("Type allAnswers-1", type(allAnswers))
-    allAnswers.append(str(metaQuestion['correct_answer']))
+    #allAnswers.append(str(metaQuestion['correct_answer']))
     if debug:
         print("Type allAnswers-2", type(allAnswers))
         print(allAnswers)
