@@ -154,7 +154,6 @@ def promptBooleanQ(metaQuestion, debug):
     correctAnswer = metaQuestion['correct_answer']
     print("True or False")
     #Then I need to add a function where it asks the for an answer. True or false. It then compares that answer to the real answer.
-    print(correctAnswer)
     userAnswer = input("Choose True or False: ")
     if userAnswer == correctAnswer:
         print("Correct!")
