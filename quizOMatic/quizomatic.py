@@ -147,7 +147,7 @@ def promptMultiQ(metaQuestion, debug ):
         print("Correct!")
     else:
         print("Incorrect.")
-        print("The correct answer was " correctAnswer)
+        print("The correct answer was " , correctAnswer)
     return(correctAnswer)
 
 def promptBooleanQ(metaQuestion, debug):
@@ -160,7 +160,7 @@ def promptBooleanQ(metaQuestion, debug):
         print("Correct!")
     else:
         print("Incorrect.")
-        print("The correct answer was " correctAnswer)
+        print("The correct answer was " , correctAnswer)
     return(correctAnswer)
 
 # main
